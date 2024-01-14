@@ -66,7 +66,25 @@
 # book1.p??? = 1960
 
 # Your code here
+class Book:
+    pass
 
+
+book1 = Book()
+book2 = Book()
+book3 = Book()
+
+book1.title = 'Children of Blood and Bone'
+book1.author = 'Tomi Adeyemi'
+book1.pubyear = 2018
+
+book2.title = 'Children of Virtue and Vengeance'
+book2.author = 'Tomi Adeyemi'
+book2.pubyear = 2019
+
+book3.title = 'There Was a Country'
+book3.author = 'Chinua Achebe'
+book3.pubyear = 2012
 # ----------------------------------------------------------------------------------------------------------------------
 
 # Exercise 2. Vehicle and Types of Vehicles
@@ -77,6 +95,24 @@
 #   message: "<NAME_OF_VEHICLE> is a <TYPE_OF_VEHICLE>"
 # - Create Car and Bike classes that inherit from Vehicle.
 # - Create instances of Car and Bike and make them show their types.
+
+class Vehicle:
+
+    def __init__(self, name, type):
+        self.name = name
+        self.type = type
+    def show_type(self):
+        print(f'{self.name} is a {self.type}')
+
+class Car(Vehicle):
+    pass
+class Bike(Vehicle):
+    pass
+
+car = Car('Toyota Camry', "sedan" )
+bike = Bike('Canyon Stoic 4', 'mountain bike')
+car.show_type()
+bike.show_type()
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -98,6 +134,15 @@
 # print(my_car.model)
 # print(my_car.year)
 
+class Car:
+    def __init__(self,model, year):  #added self as that's required for instance creation
+         self.model = model #renamed using self
+         self.year = year #renamed using self
+
+my_car = Car("Toyota", 2022) #added year
+
+print(my_car.model)
+print(my_car.year)
 # ----------------------------------------------------------------------------------------------------------------------
 
 # Exercise 4. SmartHome with Constructor
@@ -120,6 +165,21 @@
 # Call the send_notification() method for each instance, 
 # passing a message reminding to turn off the lights.
 
+
+class SmartHome:
+    def __init__(self, home_name, location, number_of_devices):
+        self.home_name = home_name
+        self.location = location
+        self.number_of_devices = number_of_devices
+    def send_notification(self):
+        print(f'{self.home_name} in {self.location}, please remember to turn off all devices')
+home1 = SmartHome('Villa Rose', 'New York', '15 devices')
+home2 = SmartHome('Green House', 'California', '10 devices')
+home3 = SmartHome('Sea View', 'Florida', '20 devices')
+
+home1.send_notification()
+home2.send_notification()
+home3.send_notification()
 # ----------------------------------------------------------------------------------------------------------------------
 
 # Exercise 5. Inheritance. Spot and correct mistakes
@@ -168,6 +228,33 @@
 #         super().__init__(name, age)
 #         self.num_fins = num_fins
 
+
 # tiger = Mammal('Tiger', 5, 4)
 # sparrow = Bird(True)
 # goldfish = Fish('Goldfish', 2, 'Many')
+
+
+class Animal:
+    def __init__(self, name, age):
+        self.name = name #added self to rename name
+        self.age = age #added self to rename age
+
+class Mammal(Animal): #changed to Animal as that is what the above class is named
+    def __init__(self, name, age, num_legs):
+        super().__init__(name, age)
+        self.num_legs = num_legs
+
+class Bird(Animal):
+    def __init__(self, name, age, can_fly): #added name
+        super().__init__(name, age) #added this line of super
+        self.can_fly = can_fly
+
+class Fish(Animal): #changed to Animal since fish aren't mammals
+    def __init__(self, name, age, num_fins):
+        super().__init__(name, age)
+        self.num_fins = num_fins
+
+
+tiger = Mammal('Tiger', 5, 4)
+sparrow = Bird('Robin', '2', 'Yes') #added an entry
+goldfish = Fish('Goldfish', 2, 'Many')
